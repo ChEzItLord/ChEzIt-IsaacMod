@@ -2,11 +2,48 @@ local mod = RegisterMod("Random Items", 1)
 local luckPotion = Isaac.GetItemIdByName("Luck Potion")
 local luckPotionLuck = 20
 
+local chaosBottled = Isaac.GetItemIdByName("Chaos Bottled")
+local currentRoom = nil
+local currentEffect = nil
+
+-- Define the 10 random tear effects
+local randomTearEffects = {
+    TearFlags.TEAR_HOMING,
+    TearFlags.TEAR_SPECTRAL,
+    TearFlags.TEAR_PIERCING,
+    TearFlags.TEAR_SPLIT,
+    TearFlags.TEAR_EXPLOSIVE,
+    TearFlags.TEAR_CHARM,
+    TearFlags.TEAR_CONFUSION,
+    TearFlags.TEAR_SLOW,
+    TearFlags.TEAR_POISON,
+    TearFlags.TEAR_FEAR,
+    TearFlags.TEAR_SHRINK,
+    TearFlags.TEAR_BURN,
+}
+
 function mod:EvaluateCache(player, cacheFlags)
     if cacheFlags & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
         local itemCount = player:GetCollectibleNum(luckPotion)
         local luckToAdd = luckPotionLuck * itemCount
         player.Luck = player.Luck + luckToAdd
+    end
+
+    if player:HasTrinket(chaosBottled) then
+        -- Store the current room and effect if they are not already stored
+        if currentRoom == nil or currentRoom ~= Game():GetLevel():GetCurrentRoomIndex() then
+            currentRoom = Game():GetLevel():GetCurrentRoomIndex()
+            currentEffect = randomTearEffects[math.random(#randomTearEffects)]
+        end
+
+        -- Apply the current effect to the player's tears
+        if cacheFlags & CacheFlag.CACHE_TEARFLAG ~= 0 then
+            player.TearFlags = player.TearFlags | currentEffect
+        end
+    else
+        -- Clear the stored room and effect when the trinket is not held
+        currentRoom = nil
+        currentEffect = nil
     end
 end
 
