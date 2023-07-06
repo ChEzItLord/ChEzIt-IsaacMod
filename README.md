@@ -17,5 +17,5 @@ Active Items:
 
 Trinkets:
 -
-- Chaos Bottled which gives your tears a random effect upon entering a room (removes other effects that it gave)
+- Chaos Bottled which gives your tears random effects at different times
   - Chaos Bottled can give Homing, Spectral, Piercing, Split, Explosive, Charm, Confusion, Slow, Poison, Fear, Shrink, or Burn
