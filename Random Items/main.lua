@@ -1,8 +1,10 @@
 local mod = RegisterMod("Random Items", 1)
+
 local luckPotion = Isaac.GetItemIdByName("Luck Potion")
 local luckPotionLuck = 20
 
 local chaosBottled = Isaac.GetItemIdByName("Chaos Bottled")
+
 local currentRoom = nil
 local currentEffect = nil
 
@@ -44,8 +46,14 @@ function mod:EvaluateCache(player, cacheFlags)
         -- Clear the stored room and effect when the trinket is not held
         currentRoom = nil
         currentEffect = nil
+
+        -- Remove any existing tear effects
+        if cacheFlags & CacheFlag.CACHE_TEARFLAG ~= 0 then
+            player.TearFlags = player.TearFlags & (~TearFlags.TEAR_HOMING) -- Replace `TearFlags.TEAR_HOMING` with the default tear flag
+        end
     end
 end
+
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.EvaluateCache)
 
