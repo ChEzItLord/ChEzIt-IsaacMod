@@ -1,0 +1,4 @@
+<items gfxroot="gfx/items/" version="1">
+    <passive id="1" name="Luck Potion" gfx="luck_potion_item.png" description="+20 Luck" quality="3" cache="luck" />
+    <active id="2" name="Throat Toggle" gfx="collectible_gulp.png" description="Gulps all held trinkets" quality="3" maxcharges="10" chargetype="timed" />
+</items>
