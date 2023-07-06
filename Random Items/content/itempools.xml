@@ -1,9 +1,11 @@
 <ItemPools>
     <Pool Name="treasure">
         <Item Name="Throat Toggle" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Chaos Bottled" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="shop">
         <Item Name="Throat Toggle" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Luck Potion" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Chaos Bottled" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
 </ItemPools>
